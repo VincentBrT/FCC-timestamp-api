@@ -101,6 +101,18 @@ app.get('/api/timestamp/:date_string?', (req, res) => {
   }
 });
 
+//ADD FOR HEADER PARSER MICROSERVICE
+
+app.get('/api/whoami', (req, res) => {
+
+    res.json({
+      "ipaddress": req.header('x-forwarded-for').split(",")[0],
+      "language": req.header('Content-Language'),
+      "software": req.header('User-Agent')
+    });
+});
+
+
 //---------- DO NOT EDIT BELOW THIS LINE --------------------
 
  module.exports = app;
